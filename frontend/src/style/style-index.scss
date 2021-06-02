@@ -1,0 +1,56 @@
+$information-phone: "only screen and (max-width : 411px)";
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  width: 100%;
+  float: left;
+
+  #root {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    margin: 20px;
+
+    @media #{$information-phone} {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    .appContainer {
+      float: left;
+      height: 100%;
+      width: 100%;
+      background: #efefef;
+
+      .screenContainer {
+        height: calc(100% - 64px);
+        width: 100%;
+        float: left;
+        padding: 25px;
+
+        @media #{$information-phone} {
+          padding: unset;
+        }
+
+      }
+    }
+  }
+
+
+}
