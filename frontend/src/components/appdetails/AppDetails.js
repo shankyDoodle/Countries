@@ -1,16 +1,13 @@
 import React from "react";
-import CustomTools from "./customtools/CustomTools";
+import "./style-app-details.scss"
+
+import CustomTools from "../customtools/CustomTools";
 import connect from "react-redux/es/connect/connect";
+import ThumbnailView from "../thumbnailview/ThumbnailView";
 
 class AppDetails extends React.Component {
     getThumbnails = () => {
-        let thumbnailView = []
-        for (let country of this.props.countryData) {
-            thumbnailView.push(<div>
-                {country.name}
-            </div>);
-        }
-        return thumbnailView;
+        return this.props.countryData.map((country, i) => <ThumbnailView key={i} {...country}/>);
     };
 
     render() {

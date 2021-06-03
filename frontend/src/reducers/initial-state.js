@@ -1,5 +1,6 @@
 
 let initialState = {
+    appTheme:"light",
     searchKey:"",
     selectedRegion:"",
     countryData:[]

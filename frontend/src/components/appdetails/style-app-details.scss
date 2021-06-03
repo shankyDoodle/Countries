@@ -1,0 +1,17 @@
+.app-details-wrapper{
+  height: calc(100% - 4rem);
+
+  .tools-wrapper{
+    width: 100%;
+    height: 7.5rem;
+  }
+
+  .thumbnails-wrapper{
+    width: 100%;
+    height: calc(100vh - 11.5rem);
+    overflow: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+}

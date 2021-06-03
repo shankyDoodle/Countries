@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from "react-redux";
 import AppHeader from "./AppHeader"
-import AppDetails from "./AppDetails"
+import AppDetails from "./appdetails/AppDetails"
 import {createMuiTheme, ThemeProvider} from "@material-ui/core/styles";
 
 import {
@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core/colors";
 
 import {fetchAllCountryData} from "../actions";
+import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
 
 class App extends React.Component {
     componentWillMount(){
@@ -17,13 +18,12 @@ class App extends React.Component {
     }
 
     render() {
-        const palletType = !true ? "dark" : "light";
-        const mainPrimaryColor = !true ? grey[900] : common.white;
-        const mainSecondaryColor = !true ? grey[900] : common.white;
+        const mainPrimaryColor = this.props.appTheme === "dark" ? grey[900] : common.white;
+        const mainSecondaryColor = this.props.appTheme === "dark" ? grey[900] : common.white;
 
         const darkTheme = createMuiTheme({
             palette: {
-                type: palletType,
+                type: this.props.appTheme,
                 primary: {
                     main: mainPrimaryColor
                 },
@@ -34,6 +34,7 @@ class App extends React.Component {
         });
         return (
             <ThemeProvider theme={darkTheme}>
+                <CssBaseline />
                 <div className={"appContainer"}>
                     <AppHeader/>
                     <AppDetails/>
