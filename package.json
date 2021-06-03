@@ -1,0 +1,29 @@
+{
+  "name": "countries",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:backend": "cd backend && node index.js",
+    "start:frontend": "cd frontend && npm start",
+    "start:local": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install-all": "npm install && npm run install:backend && npm run install:frontend",
+    "installAll:startAll": "npm run install-all && npm run start:local"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shankyDoodle/Countries.git"
+  },
+  "author": "Shashank",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shankyDoodle/Countries/issues"
+  },
+  "homepage": "https://github.com/shankyDoodle/Countries#readme",
+  "dependencies": {
+    "concurrently": "^6.2.0"
+  }
+}
