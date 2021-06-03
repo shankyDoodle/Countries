@@ -5,6 +5,7 @@ let initialState = {
     selectedRegion:"",
     countryData:[],
     activeCountry: null,
+    isScreenLoading: false
 };
 
 

@@ -37,35 +37,42 @@ app.get('/fetchAllCountryData', (req, res) => {
 });
 
 app.get('/fetchCountryDataByName', (req, res) => {
-    let {name, fullText} = req.query;
+    let {name, fullText, region} = req.query;
     let url = "";
-    if(!name || !name.length){
+    if (!name || !name.length) {
         url = URLMappings.all;
-    }else {
+    } else {
         url = URLMappings.countriesByName + name;
-        if(fullText)
+        if (fullText)
             url += "?fullText=true";
     }
 
     axios.get(url)
         .then(response => {
+            let results = response.data;
+            if (region.length) {
+                results = results.filter(data => data.region.toLowerCase() === region.toLowerCase())
+            }
             res.statusCode = OK;
-            res.send(response.data)
+            res.send(results)
         })
         .catch(e => {
             res.statusCode = BAD_REQUEST;
             res.send(e)
         });
-
 });
 
 app.get('/fetchCountryDataByRegion', (req, res) => {
-    let {region} = req.query;
-    let url = !region|| !region.length ? URLMappings.all : URLMappings.countriesByRegion + region;
+    let {name, region} = req.query;
+    let url = !region || !region.length ? URLMappings.all : URLMappings.countriesByRegion + region;
     axios.get(url)
         .then(response => {
+            let results = response.data;
+            if (name.length) {
+                results = results.filter(data => data.name.toLowerCase().includes(name.toLowerCase()))
+            }
             res.statusCode = OK;
-            res.send(response.data)
+            res.send(results)
         })
         .catch(e => {
             res.statusCode = BAD_REQUEST;

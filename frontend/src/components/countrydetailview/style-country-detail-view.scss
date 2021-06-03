@@ -23,6 +23,9 @@ $information-phone: "only screen and (max-width : 411px)";
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
+    @media #{$information-phone} {
+      padding: 2rem 0;
+    }
 
     .flag {
       height: auto;

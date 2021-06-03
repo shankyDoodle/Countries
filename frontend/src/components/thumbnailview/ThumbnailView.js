@@ -6,11 +6,12 @@ import CardActionArea from "@material-ui/core/CardActionArea/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia/CardMedia";
 import CardContent from "@material-ui/core/CardContent/CardContent";
 import Typography from "@material-ui/core/Typography/Typography";
-import {handleCardClicked} from "../../actions";
+import {handleCardClicked, setScreenLoader} from "../../actions";
 
 class ThumbnailView extends React.Component {
 
     handleCardClicked = () => {
+        this.props.dispatch(setScreenLoader(true))
         this.props.dispatch(handleCardClicked(this.props.alpha3Code));
     };
 

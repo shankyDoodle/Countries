@@ -9,11 +9,12 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 
-import {toggleAppTheme} from "../actions";
+import {setScreenLoader, toggleAppTheme} from "../actions";
 
 
 class AppHeader extends React.Component {
     toggleAppTheme = () => {
+        this.props.dispatch(setScreenLoader(true))
         this.props.dispatch(toggleAppTheme());
     }
 

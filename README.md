@@ -32,8 +32,5 @@ all countries by interacting with https://restcountries.eu/ APIs.
 npm run installAll:startAll
 ```
 
-1. Run application by:
-```bash
-npm run start:local
-```
+ (If not redirected already, application is running at [http://localhost:3000/](http://localhost:3000/) )
  

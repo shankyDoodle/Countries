@@ -5,7 +5,7 @@ import "./style-custom-tools.scss"
 import TextField from "@material-ui/core/TextField/TextField";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
-import {handleSearchKeyChange, handleRegionChanged} from "../../actions/index";
+import {handleSearchKeyChange, handleRegionChanged, setScreenLoader} from "../../actions/index";
 import Typography from "@material-ui/core/Typography/Typography";
 
 class CustomTools extends React.Component {
@@ -21,17 +21,20 @@ class CustomTools extends React.Component {
     };
 
     handleSearchKeyBlur = () => {
-        this.props.dispatch(handleSearchKeyChange(this.state.searchKey));
+        this.props.dispatch(setScreenLoader(true))
+        this.props.dispatch(handleSearchKeyChange(this.state.searchKey, this.props.selectedRegion));
     };
 
     handleKeyDown = (e) => {
         if(e.key === 'Enter'){
-            this.props.dispatch(handleSearchKeyChange(this.state.searchKey));
+            this.props.dispatch(setScreenLoader(true))
+            this.props.dispatch(handleSearchKeyChange(this.state.searchKey, this.props.selectedRegion));
         }
     };
 
     handleRegionChange = (e) => {
-        this.props.dispatch(handleRegionChanged(e.target.value));
+        this.props.dispatch(setScreenLoader(true))
+        this.props.dispatch(handleRegionChanged(this.props.searchKey, e.target.value));
     };
 
     render() {

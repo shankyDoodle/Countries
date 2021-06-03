@@ -9,11 +9,14 @@ import {
     grey
 } from "@material-ui/core/colors";
 
-import {fetchAllCountryData} from "../actions";
+import {fetchAllCountryData, setScreenLoader} from "../actions";
 import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
+import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
+import Backdrop from "@material-ui/core/Backdrop/Backdrop";
 
 class App extends React.Component {
-    componentDidMount(){
+    componentDidMount() {
+        this.props.dispatch(setScreenLoader(true))
         this.props.dispatch(fetchAllCountryData())
     }
 
@@ -34,11 +37,14 @@ class App extends React.Component {
         });
         return (
             <ThemeProvider theme={darkTheme}>
-                <CssBaseline />
+                <CssBaseline/>
                 <div className={"appContainer"}>
                     <AppHeader/>
                     <AppDetails/>
                 </div>
+                <Backdrop open={this.props.isScreenLoading}>
+                    <CircularProgress color="inherit"/>
+                </Backdrop>
             </ThemeProvider>
         )
     }

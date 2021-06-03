@@ -6,7 +6,8 @@ const _handleSearchKeyChange = (state, searchKey, countryData) => {
         ...state,
         searchKey,
         countryData,
-        activeCountry: null
+        activeCountry: null,
+        isScreenLoading:false
     }
 };
 
@@ -15,7 +16,8 @@ const _handleDropDownOnChange = (state, selectedRegion, countryData) => {
         ...state,
         selectedRegion,
         countryData,
-        activeCountry: null
+        activeCountry: null,
+        isScreenLoading:false
     }
 };
 
@@ -23,21 +25,31 @@ const _successFetchAllCountryData = (state, countryData) => {
     return {
         ...state,
         countryData,
-        activeCountry: null
+        activeCountry: null,
+        isScreenLoading:false
     }
 };
 
 const _toggleAppTheme = (state) => {
     return {
         ...state,
-        appTheme: state.appTheme === "dark" ? "light" : "dark"
+        appTheme: state.appTheme === "dark" ? "light" : "dark",
+        isScreenLoading:false
     }
 };
 
 const _handleCardClick = (state, activeCountry) => {
     return {
         ...state,
-        activeCountry
+        activeCountry,
+        isScreenLoading:false
+    }
+};
+
+const _setScreenLoadingStatus = (state, isScreenLoading) => {
+    return {
+        ...state,
+        isScreenLoading
     }
 };
 
@@ -57,6 +69,9 @@ export default (state = getInitialState(), action) => {
 
         case appActions.SUCCESS_HANDLE_CARD_CLICKED:
             return _handleCardClick(state, action.countryData)
+
+        case appActions.SET_SCREEN_LOADER:
+            return _setScreenLoadingStatus(state, action.isScreenLoading)
 
         default:
             return state

@@ -6,6 +6,7 @@ export const HANDLE_REGION_DROP_DOWN_ON_CHANGE = 'HANDLE_REGION_DROP_DOWN_ON_CHA
 export const SUCCESS_FETCH_ALL_LIST = 'SUCCESS_FETCH_ALL_LIST';
 export const TOGGLE_APP_THEME = 'TOGGLE_APP_THEME';
 export const SUCCESS_HANDLE_CARD_CLICKED = 'SUCCESS_HANDLE_CARD_CLICKED';
+export const SET_SCREEN_LOADER = 'SET_SCREEN_LOADER';
 
 const handleServerFailure = function (error) {
     console.log(error);
@@ -13,6 +14,11 @@ const handleServerFailure = function (error) {
 
 export const toggleAppTheme = () => ({
     type: TOGGLE_APP_THEME,
+})
+
+export const setScreenLoader = (isScreenLoading) => ({
+    type: SET_SCREEN_LOADER,
+    isScreenLoading
 })
 
 export const successHandleSearchKeyChange = (searchKey, countryData) => ({
@@ -50,9 +56,9 @@ export const fetchAllCountryData = () => {
     };
 }
 
-export const handleSearchKeyChange = (searchKey) => {
+export const handleSearchKeyChange = (searchKey, selectedRegion) => {
     return dispatch => {
-        return axios.get(URLMappings.FetchCountryDataByName, {params:{name: searchKey}})
+        return axios.get(URLMappings.FetchCountryDataByName, {params:{name: searchKey, region: selectedRegion}})
             .then(res => {
                 dispatch(successHandleSearchKeyChange(searchKey, res.data))
             })
@@ -62,9 +68,9 @@ export const handleSearchKeyChange = (searchKey) => {
     };
 }
 
-export const handleRegionChanged = (selectedRegion) => {
+export const handleRegionChanged = (searchKey, selectedRegion) => {
     return dispatch => {
-        return axios.get(URLMappings.FetchCountryDataByRegion, {params:{region: selectedRegion}})
+        return axios.get(URLMappings.FetchCountryDataByRegion, {params:{name: searchKey, region: selectedRegion}})
             .then(res => {
                 dispatch(successHandleRegionChanged(selectedRegion, res.data))
             })

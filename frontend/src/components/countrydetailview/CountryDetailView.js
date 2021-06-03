@@ -2,7 +2,7 @@ import React from "react";
 import connect from "react-redux/es/connect/connect";
 import "./style-country-detail-view.scss"
 import Typography from "@material-ui/core/Typography/Typography";
-import {fetchAllCountryData, handleCardClicked} from "../../actions";
+import {fetchAllCountryData, handleCardClicked, setScreenLoader} from "../../actions";
 import Button from "@material-ui/core/Button/Button";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
@@ -10,10 +10,12 @@ import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 class CountryDetailView extends React.Component {
 
     handleBorderCountryClicked = (alpha3Code) => {
+        this.props.dispatch(setScreenLoader(true))
         this.props.dispatch(handleCardClicked(alpha3Code));
     };
 
     handleBackButtonCLicked = () => {
+        this.props.dispatch(setScreenLoader(true))
         this.props.dispatch(fetchAllCountryData());
     };
 
