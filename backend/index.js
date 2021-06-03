@@ -9,11 +9,7 @@ const axios = require('axios');
 
 const URLMappings = require('./url-mappings');
 const OK = 200;
-const CREATED = 201;
 const BAD_REQUEST = 400;
-const NOT_FOUND = 404;
-const CONFLICT = 409;
-const SERVER_ERROR = 500;
 
 const port = 9090;
 
@@ -41,8 +37,16 @@ app.get('/fetchAllCountryData', (req, res) => {
 });
 
 app.get('/fetchCountryDataByName', (req, res) => {
-    let {name} = req.query;
-    let url = !name || !name.length ? URLMappings.all : URLMappings.countriesByName + name;
+    let {name, fullText} = req.query;
+    let url = "";
+    if(!name || !name.length){
+        url = URLMappings.all;
+    }else {
+        url = URLMappings.countriesByName + name;
+        if(fullText)
+            url += "?fullText=true";
+    }
+
     axios.get(url)
         .then(response => {
             res.statusCode = OK;
@@ -70,4 +74,17 @@ app.get('/fetchCountryDataByRegion', (req, res) => {
 
 });
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+app.get('/fetchCountryDataByCode3', (req, res) => {
+    let {code} = req.query;
+    axios.get(URLMappings.countriesByCode + code)
+        .then(response => {
+            res.statusCode = OK;
+            res.send(response.data)
+        })
+        .catch(e => {
+            res.statusCode = BAD_REQUEST;
+            res.send(e)
+        });
+});
+
+app.listen(port, () => console.log(`App listening at http://localhost:${port}`))

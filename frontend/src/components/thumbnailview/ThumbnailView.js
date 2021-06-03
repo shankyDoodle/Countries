@@ -6,8 +6,14 @@ import CardActionArea from "@material-ui/core/CardActionArea/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia/CardMedia";
 import CardContent from "@material-ui/core/CardContent/CardContent";
 import Typography from "@material-ui/core/Typography/Typography";
+import {handleCardClicked} from "../../actions";
 
 class ThumbnailView extends React.Component {
+
+    handleCardClicked = () => {
+        this.props.dispatch(handleCardClicked(this.props.alpha3Code));
+    };
+
     render() {
         const countryLabelStyle = {
             maxHeight: "2rem",
@@ -18,7 +24,7 @@ class ThumbnailView extends React.Component {
         return (
             <div className={"thumbnail-wrapper"}>
                 <Card>
-                    <CardActionArea>
+                    <CardActionArea onClick={this.handleCardClicked}>
                         <CardMedia component="img" src={this.props.flag} style={{height: "10rem"}}/>
                         <CardContent>
                             <Typography gutterBottom variant="h6" component="h6" style={countryLabelStyle}>{this.props.name}</Typography>

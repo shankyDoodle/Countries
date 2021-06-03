@@ -5,6 +5,7 @@ export const HANDLE_SEARCH_KEY_CHANGE = 'HANDLE_SEARCH_KEY_CHANGE';
 export const HANDLE_REGION_DROP_DOWN_ON_CHANGE = 'HANDLE_REGION_DROP_DOWN_ON_CHANGE';
 export const SUCCESS_FETCH_ALL_LIST = 'SUCCESS_FETCH_ALL_LIST';
 export const TOGGLE_APP_THEME = 'TOGGLE_APP_THEME';
+export const SUCCESS_HANDLE_CARD_CLICKED = 'SUCCESS_HANDLE_CARD_CLICKED';
 
 const handleServerFailure = function (error) {
     console.log(error);
@@ -23,6 +24,12 @@ export const successHandleSearchKeyChange = (searchKey, countryData) => ({
 export const successHandleRegionChanged = (selectedRegion, countryData) => ({
     type: HANDLE_REGION_DROP_DOWN_ON_CHANGE,
     selectedRegion,
+    countryData
+})
+
+export const successHandleCardClicked = (activeCountry, countryData) => ({
+    type: SUCCESS_HANDLE_CARD_CLICKED,
+    activeCountry,
     countryData
 })
 
@@ -60,6 +67,18 @@ export const handleRegionChanged = (selectedRegion) => {
         return axios.get(URLMappings.FetchCountryDataByRegion, {params:{region: selectedRegion}})
             .then(res => {
                 dispatch(successHandleRegionChanged(selectedRegion, res.data))
+            })
+            .catch(e => {
+                dispatch(handleServerFailure(e))
+            });
+    };
+}
+
+export const handleCardClicked = (selectedCountryCode) => {
+    return dispatch => {
+        return axios.get(URLMappings.FetchCountryDataByCode3, {params:{code: selectedCountryCode}})
+            .then(res => {
+                dispatch(successHandleCardClicked(selectedCountryCode, res.data))
             })
             .catch(e => {
                 dispatch(handleServerFailure(e))

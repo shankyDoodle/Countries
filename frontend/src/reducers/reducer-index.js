@@ -31,6 +31,13 @@ const _toggleAppTheme = (state )=>{
     }
 };
 
+const _handleCardClick = (state, activeCountry)=>{
+    return {
+        ...state,
+        activeCountry
+    }
+}
+
 export default (state = getInitialState(), action) => {
     switch (action.type) {
         case appActions.HANDLE_SEARCH_KEY_CHANGE:
@@ -44,6 +51,9 @@ export default (state = getInitialState(), action) => {
 
         case appActions.TOGGLE_APP_THEME:
             return _toggleAppTheme(state, action.countryData)
+
+        case appActions.SUCCESS_HANDLE_CARD_CLICKED:
+            return _handleCardClick(state, action.countryData)
 
         default:
             return state

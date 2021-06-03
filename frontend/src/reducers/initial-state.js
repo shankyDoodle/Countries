@@ -3,7 +3,8 @@ let initialState = {
     appTheme:"light",
     searchKey:"",
     selectedRegion:"",
-    countryData:[]
+    countryData:[],
+    activeCountry: null,
 };
 
 

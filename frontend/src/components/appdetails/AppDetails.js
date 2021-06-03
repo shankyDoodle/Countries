@@ -10,15 +10,26 @@ class AppDetails extends React.Component {
         return this.props.countryData.map((country, i) => <ThumbnailView key={i} {...country}/>);
     };
 
+    getActiveCountryView = () => {
+        return null;
+    };
+
+    getAllCountriesView = () => {
+        return <>
+            <div className={"tools-wrapper"}>
+                <CustomTools/>
+            </div>
+            <div className={"thumbnails-wrapper"}>
+                {this.getThumbnails()}
+            </div>
+        </>
+    };
+
     render() {
+
         return (
             <div className={"app-details-wrapper"}>
-                <div className={"tools-wrapper"}>
-                    <CustomTools/>
-                </div>
-                <div className={"thumbnails-wrapper"}>
-                    {this.getThumbnails()}
-                </div>
+                {this.props.activeCountry ? this.getActiveCountryView() : this.getAllCountriesView()}
             </div>
         );
     }
