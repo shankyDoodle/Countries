@@ -5,7 +5,8 @@ const _handleSearchKeyChange = (state, searchKey, countryData) => {
     return {
         ...state,
         searchKey,
-        countryData
+        countryData,
+        activeCountry: null
     }
 };
 
@@ -13,30 +14,32 @@ const _handleDropDownOnChange = (state, selectedRegion, countryData) => {
     return {
         ...state,
         selectedRegion,
-        countryData
+        countryData,
+        activeCountry: null
     }
 };
 
 const _successFetchAllCountryData = (state, countryData) => {
     return {
         ...state,
-        countryData
+        countryData,
+        activeCountry: null
     }
 };
 
-const _toggleAppTheme = (state )=>{
+const _toggleAppTheme = (state) => {
     return {
         ...state,
-        appTheme: state.appTheme === "dark"  ? "light" : "dark"
+        appTheme: state.appTheme === "dark" ? "light" : "dark"
     }
 };
 
-const _handleCardClick = (state, activeCountry)=>{
+const _handleCardClick = (state, activeCountry) => {
     return {
         ...state,
         activeCountry
     }
-}
+};
 
 export default (state = getInitialState(), action) => {
     switch (action.type) {

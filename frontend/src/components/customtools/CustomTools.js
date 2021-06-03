@@ -37,14 +37,15 @@ class CustomTools extends React.Component {
     render() {
         return (
             <div className={"custom-tool-wrapper"}>
-                <TextField id={"search-input"}
-                           placeholder="Search for a country..."
-                           variant="outlined"
-                           onChange={this.handleSearchKeyChange}
-                           onKeyDown={this.handleKeyDown}
-                           onBlur={this.handleSearchKeyBlur}
-                           value={this.state.searchKey}/>
-
+                <div className={"search-container"}>
+                    <TextField id={"search-input"}
+                               placeholder="Search for a country..."
+                               variant="outlined"
+                               onChange={this.handleSearchKeyChange}
+                               onKeyDown={this.handleKeyDown}
+                               onBlur={this.handleSearchKeyBlur}
+                               value={this.state.searchKey}/>
+                </div>
                 <div id={"select-container"}>
                     <Typography variant="body2" color="textSecondary" component="div">
                         Filter By Region:

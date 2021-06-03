@@ -1,17 +1,41 @@
-.custom-tool-wrapper{
-  width: 100%;
-  float: left;
+$information-phone: "only screen and (max-width : 411px)";
 
-  .MuiTextField-root{
-    float: left;
-    width: 30%;
-    margin: 2rem;
+.custom-tool-wrapper{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+
+  @media #{$information-phone} {
+    flex-flow: column wrap;
+  }
+
+  .search-container{
+    flex: 3;
+    display: block;
+    position: relative;
+    padding: 2rem;
+
+    @media #{$information-phone} {
+      flex: 1;
+      padding: 1rem 2rem;
+    }
+
+    .MuiTextField-root{
+      width: 50%;
+      @media #{$information-phone} {
+        width: 100%;
+      }
+    }
   }
 
   #select-container{
-    float: right;
-    width: 15%;
+    flex: 1;
     margin: 0.9rem 5rem 1rem 2rem;
+
+    @media #{$information-phone} {
+      flex: 1;
+      margin: 0rem 2rem 1rem 2rem;
+    }
 
     .MuiOutlinedInput-root{
       width: 100%;

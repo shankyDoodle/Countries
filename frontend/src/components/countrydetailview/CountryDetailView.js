@@ -2,15 +2,19 @@ import React from "react";
 import connect from "react-redux/es/connect/connect";
 import "./style-country-detail-view.scss"
 import Typography from "@material-ui/core/Typography/Typography";
-import {handleCardClicked} from "../../actions";
+import {fetchAllCountryData, handleCardClicked} from "../../actions";
 import Button from "@material-ui/core/Button/Button";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 
 class CountryDetailView extends React.Component {
 
-    handleBorderCountryClicked = () => {
-        this.props.dispatch(handleCardClicked(this.props.alpha3Code));
+    handleBorderCountryClicked = (alpha3Code) => {
+        this.props.dispatch(handleCardClicked(alpha3Code));
+    };
+
+    handleBackButtonCLicked = () => {
+        this.props.dispatch(fetchAllCountryData());
     };
 
     getBorderCountryButton = () => {
@@ -47,13 +51,13 @@ class CountryDetailView extends React.Component {
         return (
             <div className={"country-details-wrapper"}>
                 <div className={"back-button-wrapper"}>
-                    <Button variant="contained" color="primary">
+                    <Button variant="contained" color="primary" onClick={this.handleBackButtonCLicked}>
                         <ArrowBackIcon/>
-                        Back
+                        Home
                     </Button>
                 </div>
                 <div className={"info-wrapper"}>
-                    <div className={"flag"}><img src={this.props.flag}/></div>
+                    <div className={"flag"}><img src={this.props.flag} alt={""}/></div>
                     <div className={"info"}>
                         <div className={"country-label"}>
                             <Typography gutterBottom variant="h5" component="h5"
