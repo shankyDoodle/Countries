@@ -13,7 +13,7 @@ import {fetchAllCountryData} from "../actions";
 import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
 
 class App extends React.Component {
-    componentWillMount(){
+    componentDidMount(){
         this.props.dispatch(fetchAllCountryData())
     }
 

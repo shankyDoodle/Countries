@@ -19,7 +19,7 @@ class ThumbnailView extends React.Component {
             <div className={"thumbnail-wrapper"}>
                 <Card>
                     <CardActionArea>
-                        <CardMedia component="img" src={this.props.flag} style={{height: "10rem"}}></CardMedia>
+                        <CardMedia component="img" src={this.props.flag} style={{height: "10rem"}}/>
                         <CardContent>
                             <Typography gutterBottom variant="h6" component="h6" style={countryLabelStyle}>{this.props.name}</Typography>
                             <Typography variant="body2" color="textSecondary" component="div">
@@ -29,7 +29,7 @@ class ThumbnailView extends React.Component {
                                 <b> Region: </b> {this.props.region}
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="div">
-                                <b> Region: </b> {this.props.capital}
+                                <b> Capital: </b> {this.props.capital}
                             </Typography>
                         </CardContent>
                     </CardActionArea>

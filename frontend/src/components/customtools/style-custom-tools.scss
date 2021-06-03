@@ -8,9 +8,13 @@
     margin: 2rem;
   }
 
-  .MuiInput-root{
+  #select-container{
     float: right;
-    width: 10%;
-    margin: 2rem 5rem 2rem 2rem;
+    width: 15%;
+    margin: 0.9rem 5rem 1rem 2rem;
+
+    .MuiOutlinedInput-root{
+      width: 100%;
+    }
   }
 }

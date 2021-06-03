@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField/TextField";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import {handleSearchKeyChange, handleRegionChanged} from "../../actions/index";
+import Typography from "@material-ui/core/Typography/Typography";
 
 class CustomTools extends React.Component {
     constructor(props) {
@@ -30,24 +31,32 @@ class CustomTools extends React.Component {
     render() {
         return (
             <div className={"custom-tool-wrapper"}>
-                <TextField id="search-input"
-                           placeholder="Outlined"
+                <TextField id={"search-input"}
+                           placeholder="Search for a country..."
                            variant="outlined"
                            onChange={this.handleSearchKeyChange}
                            onBlur={this.handleSearchKeyBlur}
                            value={this.state.searchKey}/>
-                <Select id="region-select"
-                        value={this.props.selectedRegion}
-                        label="Age"
-                        placeholder={"Filter By Region"}
-                        onChange={this.handleRegionChange}>
-                    <MenuItem value=""><em>All</em></MenuItem>
-                    <MenuItem value={"africa"}>Africa</MenuItem>
-                    <MenuItem value={"americas"}>Americas</MenuItem>
-                    <MenuItem value={"asia"}>Asia</MenuItem>
-                    <MenuItem value={"europe"}>Europe</MenuItem>
-                    <MenuItem value={"oceania"}>Oceania</MenuItem>
-                </Select>
+
+                <div id={"select-container"}>
+                    <Typography variant="body2" color="textSecondary" component="div">
+                        Filter By Region:
+                    </Typography>
+                    <Select id="region-select"
+                            labelId="select-outlined-label"
+                            variant={"outlined"}
+                            value={this.props.selectedRegion}
+                            label="Filter By Region"
+                            displayEmpty
+                            onChange={this.handleRegionChange}>
+                        <MenuItem value={""}>All</MenuItem>
+                        <MenuItem value={"africa"}>Africa</MenuItem>
+                        <MenuItem value={"americas"}>Americas</MenuItem>
+                        <MenuItem value={"asia"}>Asia</MenuItem>
+                        <MenuItem value={"europe"}>Europe</MenuItem>
+                        <MenuItem value={"oceania"}>Oceania</MenuItem>
+                    </Select>
+                </div>
             </div>
         )
     }
