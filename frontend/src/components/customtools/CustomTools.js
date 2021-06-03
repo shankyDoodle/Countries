@@ -8,8 +8,19 @@ import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import {handleSearchKeyChange, handleRegionChanged} from "../../actions/index";
 
 class CustomTools extends React.Component {
-    handleSearchKeyBlur = (e) => {
-        this.props.dispatch(handleSearchKeyChange(e.target.value));
+    constructor(props) {
+        super(props);
+        this.state = {
+            searchKey: ""
+        };
+    }
+
+    handleSearchKeyChange = (e) => {
+        this.setState({searchKey: e.target.value});
+    };
+
+    handleSearchKeyBlur = () => {
+        this.props.dispatch(handleSearchKeyChange(this.state.searchKey));
     };
 
     handleRegionChange = (e) => {
@@ -22,15 +33,14 @@ class CustomTools extends React.Component {
                 <TextField id="search-input"
                            placeholder="Outlined"
                            variant="outlined"
-                           onChange={this.handleSearchKeyBlur}
-                           value={this.props.searchKey}/>
-                <Select
-                    id="region-select"
-                    value={this.props.selectedRegion}
-                    label="Age"
-                    placeholder={"Filter By Region"}
-                    onChange={this.handleRegionChange}
-                >
+                           onChange={this.handleSearchKeyChange}
+                           onBlur={this.handleSearchKeyBlur}
+                           value={this.state.searchKey}/>
+                <Select id="region-select"
+                        value={this.props.selectedRegion}
+                        label="Age"
+                        placeholder={"Filter By Region"}
+                        onChange={this.handleRegionChange}>
                     <MenuItem value=""><em>All</em></MenuItem>
                     <MenuItem value={"africa"}>Africa</MenuItem>
                     <MenuItem value={"americas"}>Americas</MenuItem>
