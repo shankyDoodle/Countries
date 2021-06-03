@@ -28,8 +28,37 @@ app.use(cors())
 
 app.get('/fetchAllCountryData', (req, res) => {
     let baseURL = URLMappings.all;
-
     axios.get(baseURL)
+        .then(response => {
+            res.statusCode = OK;
+            res.send(response.data)
+        })
+        .catch(e => {
+            res.statusCode = BAD_REQUEST;
+            res.send(e)
+        });
+
+});
+
+app.get('/fetchCountryDataByName', (req, res) => {
+    let {name} = req.query;
+    let url = !name || !name.length ? URLMappings.all : URLMappings.countriesByName + name;
+    axios.get(url)
+        .then(response => {
+            res.statusCode = OK;
+            res.send(response.data)
+        })
+        .catch(e => {
+            res.statusCode = BAD_REQUEST;
+            res.send(e)
+        });
+
+});
+
+app.get('/fetchCountryDataByRegion', (req, res) => {
+    let {region} = req.query;
+    let url = !region|| !region.length ? URLMappings.all : URLMappings.countriesByRegion + region;
+    axios.get(url)
         .then(response => {
             res.statusCode = OK;
             res.send(response.data)

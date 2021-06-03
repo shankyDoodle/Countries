@@ -24,6 +24,12 @@ class CustomTools extends React.Component {
         this.props.dispatch(handleSearchKeyChange(this.state.searchKey));
     };
 
+    handleKeyDown = (e) => {
+        if(e.key === 'Enter'){
+            this.props.dispatch(handleSearchKeyChange(this.state.searchKey));
+        }
+    };
+
     handleRegionChange = (e) => {
         this.props.dispatch(handleRegionChanged(e.target.value));
     };
@@ -35,6 +41,7 @@ class CustomTools extends React.Component {
                            placeholder="Search for a country..."
                            variant="outlined"
                            onChange={this.handleSearchKeyChange}
+                           onKeyDown={this.handleKeyDown}
                            onBlur={this.handleSearchKeyBlur}
                            value={this.state.searchKey}/>
 

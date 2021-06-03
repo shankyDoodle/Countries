@@ -14,14 +14,16 @@ export const toggleAppTheme = () => ({
     type: TOGGLE_APP_THEME,
 })
 
-export const handleSearchKeyChange = (searchKey) => ({
+export const successHandleSearchKeyChange = (searchKey, countryData) => ({
     type: HANDLE_SEARCH_KEY_CHANGE,
-    searchKey
+    searchKey,
+    countryData
 })
 
-export const handleRegionChanged = (selectedRegion) => ({
+export const successHandleRegionChanged = (selectedRegion, countryData) => ({
     type: HANDLE_REGION_DROP_DOWN_ON_CHANGE,
-    selectedRegion
+    selectedRegion,
+    countryData
 })
 
 const successFetchAllCountryData = (countryData) => ({
@@ -34,6 +36,30 @@ export const fetchAllCountryData = () => {
         return axios.get(URLMappings.FetchAllCountryData)
             .then(res => {
                 dispatch(successFetchAllCountryData(res.data))
+            })
+            .catch(e => {
+                dispatch(handleServerFailure(e))
+            });
+    };
+}
+
+export const handleSearchKeyChange = (searchKey) => {
+    return dispatch => {
+        return axios.get(URLMappings.FetchCountryDataByName, {params:{name: searchKey}})
+            .then(res => {
+                dispatch(successHandleSearchKeyChange(searchKey, res.data))
+            })
+            .catch(e => {
+                dispatch(handleServerFailure(e))
+            });
+    };
+}
+
+export const handleRegionChanged = (selectedRegion) => {
+    return dispatch => {
+        return axios.get(URLMappings.FetchCountryDataByRegion, {params:{region: selectedRegion}})
+            .then(res => {
+                dispatch(successHandleRegionChanged(selectedRegion, res.data))
             })
             .catch(e => {
                 dispatch(handleServerFailure(e))
