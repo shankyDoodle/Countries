@@ -4,8 +4,8 @@ import "./style-country-detail-view.scss"
 import Typography from "@material-ui/core/Typography/Typography";
 import {handleCardClicked} from "../../actions";
 import Button from "@material-ui/core/Button/Button";
-import Fab from "@material-ui/core/Fab/Fab";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 
 class CountryDetailView extends React.Component {
 
@@ -18,12 +18,20 @@ class CountryDetailView extends React.Component {
         this.props.countryData.forEach(country => {
             countryMap[country["alpha3Code"]] = country;
         });
+        const smallButtonStyle = {
+            fonSize: "0.5rem",
+            width: "1rem",
+            padding: "0 5px",
+            margin: "2px 5px",
+            opacity:"0.5"
+        }
         return (
-            this.props.borders.map(border => {
-                return <Button size={"sm"}
-                               onClick={this.handleBorderCountryClicked.bind(this, border)}>
-                    {countryMap[border]}
-                </Button>
+            this.props.borders.map((border, i) => {
+                return <Tooltip title={countryMap[border].name} key={i}>
+                    <Button size={"small"} variant="contained" color="secondary" style={smallButtonStyle}
+                            onClick={this.handleBorderCountryClicked.bind(this, border)}>
+                        {border}
+                    </Button></Tooltip>
             }))
     };
 
@@ -81,12 +89,12 @@ class CountryDetailView extends React.Component {
                                 </Typography>
                             </div>
                         </div>
-                        {/*<div className={"border-countries"}>*/}
-                        {/*<Typography variant="body2" color="textSecondary" component="div">*/}
-                        {/*<b> Top Level Domain: </b>*/}
-                        {/*</Typography>*/}
-                        {/*{this.getBorderCountryButton()}*/}
-                        {/*</div>*/}
+                        <div className={"border-countries"}>
+                            <Typography variant="body2" color="textSecondary" component="div">
+                                <b> Border Countries:</b>
+                            </Typography>
+                            {this.getBorderCountryButton()}
+                        </div>
 
                     </div>
                 </div>
