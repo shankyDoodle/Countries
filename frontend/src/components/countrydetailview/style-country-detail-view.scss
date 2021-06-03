@@ -1,0 +1,61 @@
+$information-phone: "only screen and (max-width : 411px)";
+
+.country-details-wrapper{
+
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  overflow: auto;
+
+  @media #{$information-phone} {
+    flex-flow: row wrap;
+  }
+
+  .back-button-wrapper {
+    padding: 2rem 2rem 0 2rem;
+  }
+
+  .info-wrapper {
+    flex: 1 1;
+    padding: 2rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+
+    .flag {
+      height: auto;
+      width: 50%;
+      min-width: 18rem;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+
+    .info {
+      height: auto;
+      width: 50%;
+      flex: 1;
+      display: flex;
+      flex-flow: column wrap;
+      padding: 2rem;
+
+      .country-label{
+        padding: 1rem;
+      }
+
+      .details {
+        display: flex;
+        flex-flow: row wrap;
+      }
+
+      .single-block {
+        padding: 1rem;
+      }
+    }
+
+  }
+}

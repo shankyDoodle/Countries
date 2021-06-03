@@ -4,6 +4,7 @@ import "./style-app-details.scss"
 import CustomTools from "../customtools/CustomTools";
 import connect from "react-redux/es/connect/connect";
 import ThumbnailView from "../thumbnailview/ThumbnailView";
+import CountryDetailView from "../countrydetailview/CountryDetailView";
 
 class AppDetails extends React.Component {
     getThumbnails = () => {
@@ -11,7 +12,7 @@ class AppDetails extends React.Component {
     };
 
     getActiveCountryView = () => {
-        return null;
+        return <CountryDetailView {...this.props.activeCountry} countryData={this.props.countryData}/>;
     };
 
     getAllCountriesView = () => {
